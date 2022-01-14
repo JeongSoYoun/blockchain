@@ -91,7 +91,7 @@ def deploy_mock_contract(decimals=DECIMALS, initial_value=ETH_USD_PRICE):
 
     print("mock deployed!")
 
-def fund_with_link(contract_address, account=None, link_token=None, amount=100000000000000000):
+def fund_with_link(contract_address, account=None, link_token=None, amount=1000000000000000000):
 
     """
         amount: 0.1 Link
