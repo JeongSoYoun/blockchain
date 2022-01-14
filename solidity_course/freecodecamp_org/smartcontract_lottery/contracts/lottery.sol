@@ -23,6 +23,7 @@ contract Lottery is VRFConsumerBase, Ownable {
     LOTTERY_STATE public lottery_state;
     uint256 public fee; 
     bytes32 public keyhash;
+    event RequestedRandomness(bytes32 requestId);
 
     constructor (
         
@@ -35,7 +36,7 @@ contract Lottery is VRFConsumerBase, Ownable {
     
     VRFConsumerBase(_vrfCoordinator, _link) {
 
-        entranceFee = 50 * (10**18);
+        entranceFee = 5 * (10**18);
         eth_usd_price = AggregatorV3Interface(_priceFeedAddress);
         lottery_state = LOTTERY_STATE.CLOSED;
         fee = _fee;
@@ -70,6 +71,8 @@ contract Lottery is VRFConsumerBase, Ownable {
 
         lottery_state = LOTTERY_STATE.CALCULATING_WINNER;
         bytes32 requestId = requestRandomness(keyhash, fee); // request data on ChainLink Oracle
+        
+        emit RequestedRandomness(requestId);
     }
 
     function fulfillRandomness(bytes32 _requestId, uint256 _randomness) internal override {
