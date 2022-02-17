@@ -7,6 +7,7 @@ def get_weth():
     """
         Mints WETH by depositing ETH
     """
+    
     account = get_account()
     weth = interface.IWeth(
         config["networks"][network.show_active()]["weth_token"]

@@ -10,3 +10,4 @@ def main():
     account = get_account()
     our_token = Token.deploy(initial_supply, {"from": account})
     print(our_token.name())
+    print(initial_supply)

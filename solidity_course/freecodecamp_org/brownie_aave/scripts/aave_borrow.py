@@ -26,7 +26,7 @@ def main():
         account=account
     )
 
-    print("Depsit ERC20")
+    print("Depsit WETH Token")
     tx = lending_pool.deposit(
         erc20_address, 
         amount, 
@@ -35,7 +35,7 @@ def main():
         {"from": account}
     )
     tx.wait(1)
-    print("Complete Depsiting ERC20")
+    print("Complete Depsiting WETH Token")
 
     # How much can we borrow?
     (borrowable_eth, total_debt) = get_borrowable_data(
