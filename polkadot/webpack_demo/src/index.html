@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> test </title>
+    <script>
+        var accounts = [];
+        function get_extensions() {
+            const extensions = window.ExtensionTest.get_polkadotJS().then((result) => {
+                console.log(result)
+            })
+        }
+
+        function get_extensions_metamask() {
+            window.ExtensionTest.get_matamask().then((result) => {
+                if (result) {
+                    window.ExtensionTest.get_moonbase_alpha(result)
+                } else {
+                    console.error("please install metamask!")
+                }
+            })
+        }
+
+        function get_accounts() {
+            window.ExtensionTest.get_account().then((all_acounts) => {
+
+                accounts = all_acounts
+                document.getElementById("accountDiv").innerHTML = "account: " + accounts[0].address;
+            })
+        }
+
+        function transfer() {
+
+            if (!accounts || !accounts.length) {
+                alert("Please login first");
+                return;
+            }
+
+            window.ExtensionTest.transfer(accounts[0].address, 1000).then((hash) => {
+
+                document.getElementById("transferDiv").innerHTML = "Hash->" + hash;
+            })
+                .catch(e => {
+                    alert(e);
+                });
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id="extensionDiv"></div></br>
+    <button type="button" onclick={get_extensions()}>Connect to Polkadot js</button>
+    <div id="metamask"></div></br>
+    <button onClick={get_extensions_metamask()}>Connect to MetaMask</button>
+    <div id="accountDiv"></div></br>
+    <button type="button" onclick={get_accounts()}>account</button>
+    <div id="transferDiv"></div></br>
+    <button type="button" onclick={transfer()}>Transfer</button>
+</body>
+
+</html>
