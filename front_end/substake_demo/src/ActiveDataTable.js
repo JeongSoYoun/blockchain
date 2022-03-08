@@ -9,7 +9,7 @@ import CustomTableHead from "./CustomTableHead";
 import CustomTableRow from "./CustomTableRow";
 import "./DataTable.css";
 
-export default function DataTable() {
+export default function ActiveDataTable() {
   const rows = dataRows;
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("rank");
