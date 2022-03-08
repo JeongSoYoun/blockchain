@@ -6,7 +6,7 @@ export const headCells = [
     label: "Rank",
   },
   {
-    id: "name",
+    id: "displayName",
     label: "Display Name",
   },
   {
@@ -22,11 +22,11 @@ export const headCells = [
     label: "Minimum Bond",
   },
   {
-    id: "del",
+    id: "delegations",
     label: "Delegations",
   },
   {
-    id: "total",
+    id: "totalBonded",
     label: "Total Bonded",
   },
 ];

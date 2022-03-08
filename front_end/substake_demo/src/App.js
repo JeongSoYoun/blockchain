@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
+import "./walletHandler";
 
 function App() {
   return (

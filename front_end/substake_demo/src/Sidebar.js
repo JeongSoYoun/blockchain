@@ -1,6 +1,7 @@
 import React from "react";
 import "./Sidebar.css";
 import MenuOption from "./MenuOption";
+import WalletButton from "./WalletButton";
 
 function Sidebar() {
   return (
@@ -9,13 +10,8 @@ function Sidebar() {
       <div className="sidebar-wallet">
         <h2>Wallet</h2>
         <div className="sidebar-wallet-buttons">
-          <button className="sidebar-wallet-button">
-            Connect With Polkadot js
-          </button>
-          <button className="sidebar-wallet-button">
-            {" "}
-            Connect With MetaMask
-          </button>
+          <WalletButton wallet="Polkadot js" />
+          <WalletButton wallet="MetaMask" />
         </div>
       </div>
 

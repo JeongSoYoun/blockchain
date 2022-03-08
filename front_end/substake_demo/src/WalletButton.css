@@ -1,0 +1,15 @@
+.sidebar-wallet-button > button {
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: beige;
+  transition: transform 450ms;
+}
+
+.sidebar-wallet-button > button:hover {
+  background-color: rgb(250, 183, 194);
+  transform: scale(1.03);
+}

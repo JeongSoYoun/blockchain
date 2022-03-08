@@ -1,0 +1,19 @@
+.wallet-injected {
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  transition: transform 450ms;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.wallet-injected-select {
+  outline: none;
+  background: beige;
+  border: 0.1px solid lightgray;
+  padding: 10px;
+  width: 100%;
+  border-radius: 10px;
+}
