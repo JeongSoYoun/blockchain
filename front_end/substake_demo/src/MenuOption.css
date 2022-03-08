@@ -1,0 +1,20 @@
+.menu-option {
+  display: flex;
+}
+
+.menu-option-detail {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 20px;
+  color: beige;
+}
+
+.menu-option-detail:hover {
+  color: rgb(236, 68, 96);
+  transform: scale(1.02);
+}

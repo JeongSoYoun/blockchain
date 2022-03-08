@@ -1,0 +1,41 @@
+.dashboard {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 15px;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header-search {
+  background-color: whitesmoke;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.dashboard-header-search > input {
+  outline: none;
+  border: none;
+  background: none;
+  color: #ec4400;
+  width: 300px;
+}
+
+.dashboard-header-search > input::placeholder {
+  color: #ec4400;
+  opacity: 0.8;
+}
+
+.dashboard-body {
+  z-index: 0;
+}

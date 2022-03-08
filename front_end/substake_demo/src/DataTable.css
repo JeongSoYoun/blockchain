@@ -1,0 +1,67 @@
+.table-collapsible-info {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  font-size: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+.table-collapsible-controller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.table-collapsible-input {
+  display: flex;
+  flex-direction: row;
+  margin-left: 10px;
+  border: 0.1px solid lightgray;
+  border-radius: 10px;
+  padding: 3px;
+  width: 80px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-collapsible-input > input {
+  border: none;
+  outline: none;
+  background: none;
+  width: 50%;
+}
+
+.table-collabsible-input-text {
+  color: black;
+  opacity: 0.8;
+  font-weight: bold;
+  font-size: 10px;
+  cursor: pointer;
+  padding: 5px;
+}
+.table-collabsible-input-text:hover {
+  color: black;
+  opacity: 1;
+}
+.table-collapsible-input > input::placeholder {
+  color: red;
+  font-size: 10px;
+}
+
+.table-collapsible-unclaim {
+  font-size: 10px;
+  font-weight: bold;
+  padding: 5px;
+  color: red;
+  opacity: 0.6;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.table-collapsible-unclaim:hover {
+  opacity: 1;
+}
+
+.table-collapsible-info-pct {
+  font-size: 15px;
+  font-weight: bold;
+}
