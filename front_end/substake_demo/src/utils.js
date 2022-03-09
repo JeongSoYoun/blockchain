@@ -13,3 +13,18 @@ function orderingComparator(a, b, orderBy) {
   }
   return 0;
 }
+
+export function sortByTotalBond(rows) {
+  let sortedRows = [];
+  sortedRows = rows.sort((a, b) => {
+    return -(a.totalBonded - b.totalBonded);
+  });
+  sortedRows.map((row, index) => (row.rank = index + 1));
+
+  return sortedRows;
+}
+
+export const stateMapping = {
+  true: "True",
+  false: "False",
+};

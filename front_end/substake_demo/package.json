@@ -2,6 +2,7 @@
   "name": "substake_demo",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://209.145.51.70:8000",
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
@@ -14,18 +15,22 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.26.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-loader-spinner": "^6.0.0-0",
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
-    "react-swipeable-views": "^0.14.0"
+    "react-swipeable-views": "^0.14.0",
+    "request": "^2.88.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "chrome": "BROWSER='google chrome' react-scripts start"
+    "chrome": "BROWSER='google chrome' react-scripts start",
+    "deploy": "scp -P 8022 -r /Users/yoon/dev/blockchain/front_end/substake_demo/build/* substake@209.145.51.70:/home/substake/www"
   },
   "eslintConfig": {
     "extends": "react-app"

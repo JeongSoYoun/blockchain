@@ -2,22 +2,9 @@ import React, { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import TableRow from "@mui/material/TableRow";
-import PropTypes from "prop-types";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
-
-CustomTableRow.propTypes = {
-  row: PropTypes.shape({
-    rank: PropTypes.number.isRequired,
-    displayName: PropTypes.string.isRequired,
-    abr: PropTypes.number.isRequired,
-    blr: PropTypes.number.isRequired,
-    minBond: PropTypes.number.isRequired,
-    delegations: PropTypes.string.isRequired,
-    totalBonded: PropTypes.string.isRequired,
-  }).isRequired,
-};
 
 function CustomTableRow(props) {
   const { row } = props;
@@ -36,15 +23,13 @@ function CustomTableRow(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {row.rank}
-        </TableCell>
-        <TableCell align="right">{row.displayName}</TableCell>
-        <TableCell align="right">{row.abr}</TableCell>
-        <TableCell align="right">{row.blr}</TableCell>
-        <TableCell align="right">{row.minBond}</TableCell>
+        <TableCell align="right">{row.rank}</TableCell>
+        <TableCell align="right">{row.display_name}</TableCell>
+        <TableCell align="right">{row.average_blocks}</TableCell>
+        <TableCell align="right">{row.blocks_last_round[0]}</TableCell>
+        <TableCell align="right">{row.minumum_bond}</TableCell>
         <TableCell align="right">{row.delegations}</TableCell>
-        <TableCell align="right">{row.totalBonded}</TableCell>
+        <TableCell align="right">{row.total_bonded}</TableCell>
       </TableRow>
 
       {/* Section 2 */}

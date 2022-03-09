@@ -6,14 +6,20 @@ import {
 import detectEthereumProvider from "@metamask/detect-provider";
 
 class WalletExtension {
-  async getPolkadotWallet() {
+  async injectPolkadotWallet() {
     await web3Enable("SUBSTAKE");
+    if (!isWeb3Injected) {
+      throw new Error("Please install extension first!");
+    }
   }
 
-  async getMetaMask() {
+  async injectMetaMask() {
     const extensions = await detectEthereumProvider({
       mustBeMetaMask: true,
     });
+    if (extensions === null) {
+      throw new Error("Please install MetaMask first!");
+    }
     return extensions;
   }
 
@@ -26,9 +32,6 @@ class WalletExtension {
   }
 
   async getPolkadotWalletAccount() {
-    if (!isWeb3Injected) {
-      throw new Error("Please install extension first!");
-    }
     const accounts = await web3Accounts();
     return accounts;
   }

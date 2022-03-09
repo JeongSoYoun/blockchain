@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
-import ActiveDataTable from "./ActiveDataTable";
+import BlockDataTable from "./BlockDataTable";
 import SearchIcon from "@mui/icons-material/Search";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -44,6 +44,7 @@ function Dashboard() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
+
   return (
     <div className="dashboard">
       <div className="dashboard-header">
@@ -60,12 +61,21 @@ function Dashboard() {
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
+        className="dashboard-swipe-view"
       >
         <div className="dashboard-body">
-          <ActiveDataTable />
+          <BlockDataTable
+            chainName={"moonbeam"}
+            roundCount={1}
+            isActive={true}
+          />
         </div>
-        <div style={{ padding: 10, color: "white" }}>
-          <h2>WAITING LIST</h2>
+        <div className="dashboard-body">
+          <BlockDataTable
+            chainName={"moonbeam"}
+            roundCount={1}
+            isActive={false}
+          />
         </div>
       </SwipeableViews>
     </div>

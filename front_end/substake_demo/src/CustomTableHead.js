@@ -3,7 +3,37 @@ import TableHead from "@mui/material/TableHead";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { headCells } from "./getData";
+
+const HEAD_ROWS = [
+  {
+    id: "rank",
+    label: "Rank",
+  },
+  {
+    id: "display_name",
+    label: "Display Name",
+  },
+  {
+    id: "average_blocks",
+    label: "Average Blocks Per Round",
+  },
+  {
+    id: "blocks_last_round",
+    label: "Blocks Last Round",
+  },
+  {
+    id: "minumum_bond",
+    label: "Minimum Bond",
+  },
+  {
+    id: "delegations",
+    label: "Delegations",
+  },
+  {
+    id: "total_bonded",
+    label: "Total Bonded",
+  },
+];
 
 function CustomTableHead(props) {
   const {
@@ -24,18 +54,18 @@ function CustomTableHead(props) {
     >
       <TableRow>
         <TableCell />
-        {headCells.map((headCell) => (
+        {HEAD_ROWS.map((row) => (
           <TableCell
-            key={headCell.id}
+            key={row.id}
             align="right"
-            sortDirection={orderBy === headCell.id ? order : false}
+            sortDirection={orderBy === row.id ? order : false}
           >
             <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : "asc"}
-              onClick={createSortHandler(headCell.id)}
+              active={orderBy === row.id}
+              direction={orderBy === row.id ? order : "asc"}
+              onClick={createSortHandler(row.id)}
             >
-              {headCell.label}
+              {row.label}
             </TableSortLabel>
           </TableCell>
         ))}

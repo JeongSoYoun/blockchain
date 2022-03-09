@@ -8,7 +8,7 @@
   justify-content: space-between;
   width: auto;
   background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
-  z-index: 1;
+  z-index: 2;
 }
 .header-title {
   margin-left: 10px;
