@@ -7,6 +7,8 @@
   border: none;
   background-color: beige;
   transition: transform 450ms;
+  font-weight: bold;
+  color: rgb(152, 153, 153);
 }
 
 .sidebar-wallet-button > button:hover {

@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material/styles";
 
 const StyledTabs = styled(Tabs)({
   backgroundColor: "#fff",
+  padding: 0,
   borderRadius: 10,
   "& .MuiTabs-indicator": {
     zIndex: 0,
@@ -21,10 +22,8 @@ const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
   ({ theme }) => ({
     textTransform: "none",
     fontWeight: "bold",
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
+    fontSize: 10,
     color: "#D3D3D3",
-    borderRadius: 10,
     "&.Mui-selected": {
       color: "#ec4400",
       zIndex: 1,
@@ -52,6 +51,10 @@ function Dashboard() {
           <StyledTab label="Active" />
           <StyledTab label="Waiting" />
         </StyledTabs>
+        <div className="dashboard-header-info">
+          <p>Stakeable Balance: 1000 DOT</p>
+          <p>Current Round: 245 </p>
+        </div>
         <div className="dashboard-header-search">
           <SearchIcon sx={{ color: "#ec4400", opacity: 0.5 }} />
           <input type="text" placeholder="Search Display Name" />

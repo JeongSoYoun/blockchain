@@ -8,7 +8,7 @@
 
 .sidebar-wallet {
   position: sticky;
-  top: 100px;
+  top: 70px;
   background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   width: 220px;
   height: 180px;
@@ -19,6 +19,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  margin-bottom: 10px;
 }
 .sidebar-wallet > h2 {
   color: beige;
@@ -35,7 +36,7 @@
 
 .sidebar-menu {
   position: sticky;
-  top: 320px;
+  top: 280px;
   background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   color: beige;
   min-width: 200px;

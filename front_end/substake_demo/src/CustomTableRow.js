@@ -48,10 +48,13 @@ function CustomTableRow(props) {
               </p>
               <div className="table-collapsible-controller">
                 <div className="table-collapsible-input">
-                  <input placeholder="Amount" />
+                  <input type="number" />
                   <div className="table-collabsible-input-text">
                     <p>MAX</p>
                   </div>
+                </div>
+                <div className="table-collapsible-stake">
+                  <p>STAKE</p>
                 </div>
                 <div className="table-collapsible-unclaim">
                   <p>UNCLAIM</p>

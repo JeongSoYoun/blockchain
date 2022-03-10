@@ -1,0 +1,31 @@
+.submenu-option {
+}
+
+.submenu-option-detail-unselected {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: bold;
+  opacity: 0.8;
+  font-size: 12px;
+}
+
+.submenu-option-detail-selected {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 3px;
+  border-radius: 5px;
+  font-weight: bold;
+  opacity: 0.8;
+  font-size: 12px;
+  color: rgb(236, 68, 96);
+  background-color: white;
+  opacity: 0.3;
+}
+
+.submenu-option-detail-unselected:hover {
+  color: rgb(236, 68, 96);
+  background-color: white;
+  opacity: 0.3;
+}

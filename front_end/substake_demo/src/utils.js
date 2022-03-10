@@ -28,3 +28,9 @@ export const stateMapping = {
   true: "True",
   false: "False",
 };
+
+export function getKeyByValue(object, value) {
+  return Object.keys(object).find((key) =>
+    object[key].find((objValue) => objValue === value)
+  );
+}

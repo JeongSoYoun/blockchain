@@ -5,10 +5,12 @@
 .app {
   align-items: center;
   min-width: 1200px;
-  background: rgb(34, 15, 105);
+  background: rgb(22, 4, 83);
 }
 
 .app-body {
   display: flex;
-  margin-top: 15px;
+  margin-top: 30px;
 }
+
+/* #rgb(34, 15, 105) */

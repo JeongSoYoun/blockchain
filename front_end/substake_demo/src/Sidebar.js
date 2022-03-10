@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Sidebar.css";
 import MenuOption from "./MenuOption";
 import WalletButton from "./WalletButton";
+
+const DASHBOARD_TITLE = ["Polkadot", "Kusama", "TestNet"];
 
 function Sidebar() {
   return (
@@ -18,10 +20,9 @@ function Sidebar() {
       {/*Menu*/}
       <div className="sidebar-menu">
         <h2 className="sidebar-menu-title">Dashboard</h2>
-        <MenuOption title="Favorites" />
-        <MenuOption title="Polkadot" />
-        <MenuOption title="Kusama" />
-        <MenuOption title="TestNet" />
+        {DASHBOARD_TITLE.map((title) => (
+          <MenuOption key={title} title={title} />
+        ))}
       </div>
     </div>
   );

@@ -22,6 +22,7 @@
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
     "react-swipeable-views": "^0.14.0",
+    "redux-devtools-extension": "^2.13.9",
     "request": "^2.88.2"
   },
   "scripts": {
@@ -46,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
   }
 }

@@ -25,7 +25,13 @@ export class DataManager {
     AXIOS_CONFIG.data["round-count"] = roundCount;
     AXIOS_CONFIG.data["active-status"] = isActive;
     axios
-      .post("/api/request", AXIOS_CONFIG.data, AXIOS_CONFIG.headers)
+      .post(
+        process.env.NODE_ENV === "development"
+          ? "/api/request"
+          : "https://api.substake.app/api/request",
+        AXIOS_CONFIG.data,
+        AXIOS_CONFIG.headers
+      )
       .then((blockData) => {
         if (isMounted) {
           let rows = blockData.data;
