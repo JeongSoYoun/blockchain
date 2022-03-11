@@ -5,7 +5,12 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useSelector } from "react-redux";
 import { selectWindowSize } from "./features/windowSizer/windowSlice";
+import { styled } from "@mui/material/styles";
 
+const StyledTableCell = styled(TableCell)({
+  fontSize: 10,
+  fontWeight: "bold",
+});
 const DESCKTOP_HEAD_COLS = [
   {
     id: "rank",
@@ -60,11 +65,10 @@ const createHeadRows = (cols, sortHandler, orderBy, order) => {
       }}
     >
       <TableRow>
-        <TableCell />
         {cols.map((col) => (
-          <TableCell
+          <StyledTableCell
             key={col.id}
-            align="right"
+            align="center"
             sortDirection={orderBy === col.id ? order : false}
           >
             <TableSortLabel
@@ -74,7 +78,7 @@ const createHeadRows = (cols, sortHandler, orderBy, order) => {
             >
               {col.label}
             </TableSortLabel>
-          </TableCell>
+          </StyledTableCell>
         ))}
       </TableRow>
     </TableHead>

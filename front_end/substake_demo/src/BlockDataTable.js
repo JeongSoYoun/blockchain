@@ -46,6 +46,7 @@ function BlockDataTable({ chainName, roundCount, isActive }) {
       component={Paper}
       sx={{
         borderRadius: 3,
+        width: "auto",
       }}
     >
       <Table>

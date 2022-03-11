@@ -14,7 +14,7 @@ function Header() {
         SUBSTAKE
       </h2>
       {/*Wallet*/}
-      <div className="header-controller">
+      <div className="header-nav">
         <div className="header-wallet-buttons">
           <WalletButton wallet="Polkadot js" />
           <WalletButton wallet="MetaMask" />

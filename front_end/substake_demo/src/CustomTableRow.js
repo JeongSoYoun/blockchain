@@ -1,13 +1,22 @@
 import React, { useState } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import TableRow from "@mui/material/TableRow";
 import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import { useSelector } from "react-redux";
 import { selectWindowSize } from "./features/windowSizer/windowSlice";
+import { styled } from "@mui/material/styles";
 
+const StyledRow = styled(TableRow)({
+  "&:hover": {
+    backgroundColor: "#dbdbd7",
+    opacity: 0.3,
+    borderColor: "#0062cc",
+    boxShadow: "none",
+  },
+});
+const StyledTableCell = styled(TableCell)({
+  fontSize: 10,
+});
 const DESKTOP_COLS = [
   "rank",
   "display_name",
@@ -18,25 +27,18 @@ const DESKTOP_COLS = [
   "total_bonded",
 ];
 const MOBILE_COLS = ["display_name", "blocks_last_round", "total_bonded"];
-
+// {
+//   open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
+// }
 const createRow = (open, setOpen, row, cols) => {
   return (
-    <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-      <TableCell>
-        <IconButton
-          aria-label="expand row"
-          size="small"
-          onClick={() => setOpen(!open)}
-        >
-          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-        </IconButton>
-      </TableCell>
+    <StyledRow onClick={() => setOpen(!open)}>
       {cols.map((col) => (
-        <TableCell key={col} align="right">
+        <StyledTableCell key={col} align="center">
           {col === "blocks_last_round" ? row[col][0] : row[col]}
-        </TableCell>
+        </StyledTableCell>
       ))}
-    </TableRow>
+    </StyledRow>
   );
 };
 
@@ -44,7 +46,6 @@ function CustomTableRow(props) {
   const windowSizeSelector = useSelector(selectWindowSize);
   const { row } = props;
   const [open, setOpen] = useState(false);
-
   return (
     <React.Fragment>
       {/* Section 1 */}
@@ -62,10 +63,12 @@ function CustomTableRow(props) {
             sx={{ backgroundColor: "#F2F2F2" }}
           >
             <div className="table-collapsible-info">
-              <p>
-                Please Note: It takes 2 rounds (~ 12 hrs) for rewards, takes 28
-                rounds (~ 7 days) to proceed delegation-related actions.
-              </p>
+              {windowSizeSelector.isMobile ? null : (
+                <p>
+                  Please Note: It takes 2 rounds (~ 12 hrs) for rewards, takes
+                  28 rounds (~ 7 days) to proceed delegation-related actions.
+                </p>
+              )}
               <div className="table-collapsible-controller">
                 <div className="table-collapsible-input">
                   <input type="number" />
