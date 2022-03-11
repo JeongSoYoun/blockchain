@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import "./App.css";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
+import Home from "./Home";
 import "./WalletHandler";
-import { useDispatch } from "react-redux";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsMobile } from "./features/windowSizer/windowSlice";
+import { selectMenu } from "./features/menuSelector/menuSlice";
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
+  const menuSelector = useSelector(selectMenu);
   const dispatch = useDispatch();
   const WindowSizeHandler = () => {
     setWidth(window.innerWidth);
@@ -33,8 +36,9 @@ function App() {
       <div className="app-body">
         {/* Wallet & Menu */}
         <Sidebar />
-        {/* Dashboard */}
-        <Dashboard />
+        {/* Home & Dashboard */}
+
+        {menuSelector.main === "home" ? <Home /> : <Dashboard />}
       </div>
     </div>
   );

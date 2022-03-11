@@ -1,68 +1,77 @@
 import React, { useState } from "react";
-import "./Dashboard.css";
 import BlockDataTable from "./BlockDataTable";
 import SearchIcon from "@mui/icons-material/Search";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
 import SwipeableViews from "react-swipeable-views";
-import { styled } from "@mui/material/styles";
 import { useTheme } from "@mui/material/styles";
-
-const StyledTabs = styled(Tabs)({
-  backgroundColor: "#fff",
-  padding: 0,
-  borderRadius: 10,
-  "& .MuiTabs-indicator": {
-    zIndex: 0,
-    backgroundColor: "#fff",
-  },
-});
-
-const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
-  ({ theme }) => ({
-    textTransform: "none",
-    fontWeight: "bold",
-    fontSize: 10,
-    color: "#D3D3D3",
-    "&.Mui-selected": {
-      color: "#ec4400",
-      zIndex: 1,
-    },
-    "&.Mui-focusVisible": {
-      backgroundColor: "rgba(100, 95, 228, 0.32)",
-    },
-  })
-);
+import { useSelector } from "react-redux";
+import { selectWindowSize } from "./features/windowSizer/windowSlice";
+import "./Dashboard.css";
 
 function Dashboard() {
+  const windowSizeSelector = useSelector(selectWindowSize);
   const theme = useTheme();
-  const [value, setValue] = useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const [index, setIndex] = useState(0);
+  const [currentTab, setCurrentTab] = useState("active");
+
+  const handleChange = (event) => {
+    if (event.target.id === "active") {
+      setIndex(0);
+      handledSelectedTab("active");
+    } else {
+      setIndex(1);
+      handledSelectedTab("waiting");
+    }
   };
   const handleChangeIndex = (index) => {
-    setValue(index);
+    setIndex(index);
+  };
+  const handledSelectedTab = (tab) => {
+    setCurrentTab(tab);
   };
 
   return (
     <div className="dashboard">
       <div className="dashboard-header">
-        <StyledTabs value={value} onChange={handleChange}>
-          <StyledTab label="Active" />
-          <StyledTab label="Waiting" />
-        </StyledTabs>
-        <div className="dashboard-header-info">
-          <p>Stakeable Balance: 1000 DOT</p>
-          <p>Current Round: 245 </p>
+        <div className="dashboard-header-tabs">
+          <div
+            id="active"
+            className={
+              currentTab === "active"
+                ? "dashboard-header-tab-selected"
+                : "dashboard-header-tab"
+            }
+            onClick={(event) => handleChange(event)}
+          >
+            Active
+          </div>
+          <div
+            id="waiting"
+            className={
+              currentTab === "waiting"
+                ? "dashboard-header-tab-selected"
+                : "dashboard-header-tab"
+            }
+            onClick={(event) => handleChange(event)}
+          >
+            Waiting
+          </div>
         </div>
-        <div className="dashboard-header-search">
-          <SearchIcon sx={{ color: "#ec4400", opacity: 0.5 }} />
-          <input type="text" placeholder="Search Display Name" />
-        </div>
+        {windowSizeSelector.isMobile ? null : (
+          <div className="dashboard-header-app-bar">
+            <div className="dashboard-header-info">
+              <p>Stakeable Balance: 1000 DOT</p>
+              <p>Current Round: 245 </p>
+            </div>
+            <div className="dashboard-header-search">
+              <SearchIcon sx={{ color: "#ec4400", opacity: 0.5 }} />
+              <input type="text" placeholder="Search Display Name" />
+            </div>
+          </div>
+        )}
       </div>
       <SwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
+        index={index}
         onChangeIndex={handleChangeIndex}
         className="dashboard-swipe-view"
       >

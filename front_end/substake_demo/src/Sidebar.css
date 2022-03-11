@@ -2,20 +2,36 @@
   flex: 0.2;
   margin-left: 10px;
   padding: 5px;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 
 .sidebar-menu {
+  background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 100px;
-  background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   color: beige;
   min-width: 200px;
   border-radius: 10px;
   padding: 20px;
   margin-top: 20px;
 }
+.sidebar-menu-option {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+}
 
+.sidebar-menu-option-selected {
+  color: #ec4400;
+  cursor: pointer;
+}
+#staking {
+  margin-top: 20px;
+}
 .sidebar-menu-title {
   margin-bottom: 30px;
 }

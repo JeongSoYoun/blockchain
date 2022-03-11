@@ -9,11 +9,41 @@
 .dashboard-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
+.dashboard-header-tabs {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.dashboard-header-tab {
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.dashboard-header-tab-selected {
+  background: rgb(32, 13, 141);
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.dashboard-header-app-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
 .dashboard-header-info {
   display: flex;
   flex-direction: row;

@@ -2,7 +2,8 @@
   background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   position: sticky;
   top: 0px;
-  padding: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;

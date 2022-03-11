@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  currentMenu: "",
+  menuStatus: { main: "home", sub: "" },
 };
 
 export const menuSlice = createSlice({
@@ -9,14 +9,12 @@ export const menuSlice = createSlice({
   initialState,
 
   reducers: {
-    setCurrentMenu: (state, action) => {
-      state.currentMenu = action.payload;
+    setMenuStatus: (state, action) => {
+      state.menuStatus = action.payload;
     },
   },
 });
 
-export const { setCurrentMenu } = menuSlice.actions;
-
-export const selectMenu = (state) => state.menu.currentMenu;
-
+export const { setMenuStatus } = menuSlice.actions;
+export const selectMenu = (state) => state.menu.menuStatus;
 export default menuSlice.reducer;
