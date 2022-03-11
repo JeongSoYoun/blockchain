@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./WalletButton.css";
 import WalletInjected from "./WalletInjected";
+import dot from "./dot.png";
+import metamask from "./metamask.png";
 
 function WalletButton({ wallet }) {
   const [accounts, setAccounts] = useState([]);
@@ -32,8 +34,19 @@ function WalletButton({ wallet }) {
   return accounts.length > 0 ? (
     <WalletInjected accounts={accounts} />
   ) : (
-    <div className="sidebar-wallet-button">
-      <button onClick={() => getExtension()}>Connect with {wallet} </button>
+    <div
+      onClick={getExtension}
+      className={
+        wallet === "Polkadot js"
+          ? "header-wallet-button-dot"
+          : "header-wallet-button"
+      }
+    >
+      {wallet === "Polkadot js" ? (
+        <img src={dot} alt="" />
+      ) : (
+        <img src={metamask} alt="" />
+      )}
     </div>
   );
 }

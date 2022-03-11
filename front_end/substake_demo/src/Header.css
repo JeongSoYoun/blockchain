@@ -1,4 +1,5 @@
 .header {
+  background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   position: sticky;
   top: 0px;
   padding: 10px;
@@ -7,9 +8,32 @@
   align-items: center;
   justify-content: space-between;
   width: auto;
-  background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   z-index: 2;
 }
+
 .header-title {
-  margin-left: 10px;
+  margin: 10px;
+  padding-left: 10px;
+}
+
+.header-controller {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header-wallet-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 20px;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+.header-menu-icon {
+  color: #f5f5dc;
+}
+
+.header-menu-icon:hover {
+  transform: scale(1.1);
 }

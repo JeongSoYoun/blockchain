@@ -1,17 +1,28 @@
-.sidebar-wallet-button > button {
-  width: 200px;
+.header-wallet-button {
+  background-color: beige;
   padding: 10px;
   border-radius: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  border: none;
-  background-color: beige;
-  transition: transform 450ms;
-  font-weight: bold;
-  color: rgb(152, 153, 153);
 }
 
-.sidebar-wallet-button > button:hover {
-  background-color: rgb(250, 183, 194);
+.header-wallet-button-dot {
+  background-color: #f5f5dc;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.header-wallet-button > img {
+  height: 20px;
+}
+
+.header-wallet-button-dot > img {
+  height: 20px;
+}
+
+.header-wallet-button:hover {
+  transform: scale(1.03);
+}
+
+.header-wallet-button-dot:hover {
   transform: scale(1.03);
 }

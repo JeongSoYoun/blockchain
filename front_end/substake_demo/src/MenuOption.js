@@ -5,14 +5,14 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SubMenuOption from "./SubMenuOption";
 
 const SIDE_MENU = {
-  Polkadot: ["Moonbeam", "Acala", "Astar", "Parallel"],
-  Kusama: ["Moonriver", "Shiden", "Statemine", "karura", "Khala"],
+  Polkadot: ["Polkadot", "Moonbeam", "Astar"],
+  Kusama: ["Kusama", "Moonriver", "Shiden"],
   TestNet: ["WestEnd"],
 };
 
 function MenuOption({ title }) {
   const [isClick, setIsClick] = useState(false);
-  const [currentMenu, setCurrentMenu] = useState("Moonbeam");
+  const [currentSubMenu, setCurrentSubMenu] = useState("");
   function toggleIsClick() {
     setIsClick((click) => !click);
   }
@@ -28,9 +28,8 @@ function MenuOption({ title }) {
               <SubMenuOption
                 key={sub}
                 sub={sub}
-                sideMenu={SIDE_MENU}
-                currentMenu={currentMenu}
-                setCurrentMenu={setCurrentMenu}
+                currentSubMenu={currentSubMenu}
+                setCurrentSubMenu={setCurrentSubMenu}
               />
             ))
           : null}

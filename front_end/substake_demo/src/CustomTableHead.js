@@ -3,8 +3,10 @@ import TableHead from "@mui/material/TableHead";
 import TableSortLabel from "@mui/material/TableSortLabel";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { useSelector } from "react-redux";
+import { selectWindowSize } from "./features/windowSizer/windowSlice";
 
-const HEAD_ROWS = [
+const DESCKTOP_HEAD_COLS = [
   {
     id: "rank",
     label: "Rank",
@@ -22,7 +24,7 @@ const HEAD_ROWS = [
     label: "Blocks Last Round",
   },
   {
-    id: "minumum_bond",
+    id: "minimum_bond",
     label: "Minimum Bond",
   },
   {
@@ -35,7 +37,52 @@ const HEAD_ROWS = [
   },
 ];
 
+const MOBILE_HEAD_COLS = [
+  {
+    id: "display_name",
+    label: "Display Name",
+  },
+  {
+    id: "blocks_last_round",
+    label: "Blocks Last Round",
+  },
+  {
+    id: "total_bonded",
+    label: "Total Bonded",
+  },
+];
+
+const createHeadRows = (cols, sortHandler, orderBy, order) => {
+  return (
+    <TableHead
+      sx={{
+        backgroundColor: "#F2F2F2",
+      }}
+    >
+      <TableRow>
+        <TableCell />
+        {cols.map((col) => (
+          <TableCell
+            key={col.id}
+            align="right"
+            sortDirection={orderBy === col.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === col.id}
+              direction={orderBy === col.id ? order : "asc"}
+              onClick={sortHandler(col.id)}
+            >
+              {col.label}
+            </TableSortLabel>
+          </TableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+};
+
 function CustomTableHead(props) {
+  const windowSizeSelector = useSelector(selectWindowSize);
   const {
     order, // "asc" or "dsc"
     orderBy, // "label "
@@ -46,32 +93,9 @@ function CustomTableHead(props) {
     onRequestSort(event, property);
   };
 
-  return (
-    <TableHead
-      sx={{
-        backgroundColor: "#F2F2F2",
-      }}
-    >
-      <TableRow>
-        <TableCell />
-        {HEAD_ROWS.map((row) => (
-          <TableCell
-            key={row.id}
-            align="right"
-            sortDirection={orderBy === row.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === row.id}
-              direction={orderBy === row.id ? order : "asc"}
-              onClick={createSortHandler(row.id)}
-            >
-              {row.label}
-            </TableSortLabel>
-          </TableCell>
-        ))}
-      </TableRow>
-    </TableHead>
-  );
+  return windowSizeSelector.isMobile
+    ? createHeadRows(MOBILE_HEAD_COLS, createSortHandler, orderBy, order)
+    : createHeadRows(DESCKTOP_HEAD_COLS, createSortHandler, orderBy, order);
 }
 
 export default CustomTableHead;

@@ -5,32 +5,52 @@ import TableRow from "@mui/material/TableRow";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
+import { useSelector } from "react-redux";
+import { selectWindowSize } from "./features/windowSizer/windowSlice";
+
+const DESKTOP_COLS = [
+  "rank",
+  "display_name",
+  "average_blocks",
+  "blocks_last_round",
+  "minimum_bond",
+  "delegations",
+  "total_bonded",
+];
+const MOBILE_COLS = ["display_name", "blocks_last_round", "total_bonded"];
+
+const createRow = (open, setOpen, row, cols) => {
+  return (
+    <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableCell>
+        <IconButton
+          aria-label="expand row"
+          size="small"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        </IconButton>
+      </TableCell>
+      {cols.map((col) => (
+        <TableCell key={col} align="right">
+          {col === "blocks_last_round" ? row[col][0] : row[col]}
+        </TableCell>
+      ))}
+    </TableRow>
+  );
+};
 
 function CustomTableRow(props) {
+  const windowSizeSelector = useSelector(selectWindowSize);
   const { row } = props;
   const [open, setOpen] = useState(false);
 
   return (
     <React.Fragment>
       {/* Section 1 */}
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell align="right">{row.rank}</TableCell>
-        <TableCell align="right">{row.display_name}</TableCell>
-        <TableCell align="right">{row.average_blocks}</TableCell>
-        <TableCell align="right">{row.blocks_last_round[0]}</TableCell>
-        <TableCell align="right">{row.minumum_bond}</TableCell>
-        <TableCell align="right">{row.delegations}</TableCell>
-        <TableCell align="right">{row.total_bonded}</TableCell>
-      </TableRow>
+      {windowSizeSelector.isMobile
+        ? createRow(open, setOpen, row, MOBILE_COLS)
+        : createRow(open, setOpen, row, DESKTOP_COLS)}
 
       {/* Section 2 */}
       <TableRow>

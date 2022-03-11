@@ -1,22 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Sidebar.css";
 import MenuOption from "./MenuOption";
-import WalletButton from "./WalletButton";
+import { useSelector } from "react-redux";
+import { selectWindowSize } from "./features/windowSizer/windowSlice";
 
 const DASHBOARD_TITLE = ["Polkadot", "Kusama", "TestNet"];
 
 function Sidebar() {
-  return (
-    <div className="sidebar">
-      {/*Wallet*/}
-      <div className="sidebar-wallet">
-        <h2>Wallet</h2>
-        <div className="sidebar-wallet-buttons">
-          <WalletButton wallet="Polkadot js" />
-          <WalletButton wallet="MetaMask" />
-        </div>
-      </div>
+  const windowSizeSelector = useSelector(selectWindowSize);
 
+  return windowSizeSelector.isMobile ? null : (
+    <div className="sidebar">
       {/*Menu*/}
       <div className="sidebar-menu">
         <h2 className="sidebar-menu-title">Dashboard</h2>

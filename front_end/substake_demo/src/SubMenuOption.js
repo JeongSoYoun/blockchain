@@ -1,17 +1,15 @@
 import React from "react";
-import { getKeyByValue } from "./utils";
 import "./SubMenuOption.css";
-import { useSelector } from "react-redux";
 
-function SubMenuOption({ sub, sideMenu, currentMenu, setCurrentMenu }) {
+function SubMenuOption({ sub, currentSubMenu, setCurrentSubMenu }) {
   const setMenu = () => {
-    setCurrentMenu(sub);
+    setCurrentSubMenu(sub);
   };
   return (
     <div className="submenu-option">
       <div
         className={
-          currentMenu === sub
+          currentSubMenu === sub
             ? "submenu-option-detail-selected"
             : "submenu-option-detail-unselected"
         }
