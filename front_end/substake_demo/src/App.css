@@ -12,4 +12,22 @@
   margin-top: 30px;
 }
 
+.app-footer {
+  margin-top: 50px;
+  bottom: 0;
+  padding: 10px;
+}
+
+.footer-title {
+  color: white;
+  padding: 10px;
+}
+
+.footer-title > h2 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+}
+
 /* #rgb(34, 15, 105) */
