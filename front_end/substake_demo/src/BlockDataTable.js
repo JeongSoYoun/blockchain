@@ -12,7 +12,7 @@ import { stateMapping } from "./utils";
 
 import "./DataTable.css";
 
-function BlockDataTable({ chainName, roundCount, isActive }) {
+function BlockDataTable({ chainName, roundCount, isActive, setCurrentRound }) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("rank");
   const [rows, setRows] = useState([]);
@@ -20,9 +20,11 @@ function BlockDataTable({ chainName, roundCount, isActive }) {
 
   useEffect(() => {
     let isMounted = true;
+    setIsLoading(true);
     DataManager.requestChainData(
       setRows,
       setIsLoading,
+      setCurrentRound,
       isMounted,
       chainName,
       roundCount,
@@ -31,7 +33,7 @@ function BlockDataTable({ chainName, roundCount, isActive }) {
     return () => {
       isMounted = false;
     };
-  }, [chainName, roundCount, isActive]);
+  }, [chainName, roundCount, isActive, setCurrentRound]);
 
   const handleSortRequest = (_, HeadCellId) => {
     const isAsc = orderBy === HeadCellId && order === "asc";

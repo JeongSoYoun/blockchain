@@ -16,6 +16,7 @@ export class DataManager {
   static requestChainData(
     setRows,
     setIsLoading,
+    setCurrentRound,
     isMounted,
     chainName,
     roundCount,
@@ -34,10 +35,12 @@ export class DataManager {
       )
       .then((blockData) => {
         if (isMounted) {
-          let rows = blockData.data;
+          console.log(blockData.data);
+          setCurrentRound(blockData.data.current_round);
+          let rows = blockData.data.collator_list;
           rows = sortByTotalBond(rows);
           setRows(rows);
-          setIsLoading((value) => !value);
+          setIsLoading(false);
         }
       })
       .catch((error) => {

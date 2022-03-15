@@ -1,0 +1,11 @@
+.mobile-header-tab-title-selected {
+  color: #ec4400;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.mobile-header-tab-title {
+  color: white;
+  margin-right: 15px;
+  cursor: pointer;
+}

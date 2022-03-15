@@ -1,8 +1,7 @@
 .sidebar {
   flex: 0.2;
   margin-left: 10px;
-  padding: 5px;
-  margin-top: 50px;
+  padding: 15px;
 }
 
 .sidebar-menu {
@@ -10,12 +9,11 @@
   display: flex;
   flex-direction: column;
   position: sticky;
-  top: 100px;
+  top: 10px;
   color: beige;
   min-width: 200px;
   border-radius: 10px;
   padding: 20px;
-  margin-top: 20px;
 }
 .sidebar-menu-option {
   display: flex;
@@ -23,6 +21,9 @@
   width: 100%;
   justify-content: space-between;
   cursor: pointer;
+}
+.sidebar-menu-option > h3:hover {
+  color: #ec4400;
 }
 
 .sidebar-menu-option-selected {
@@ -34,4 +35,9 @@
 }
 .sidebar-menu-title {
   margin-bottom: 30px;
+}
+
+.sidebar-chain-menu {
+  padding: 5px;
+  border-left: 1px solid white;
 }

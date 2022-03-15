@@ -1,10 +1,9 @@
 import React from "react";
+import ChainMenu from "./ChainMenu";
 import { useSelector } from "react-redux";
 import { selectWindowSize } from "./features/windowSizer/windowSlice";
 import { selectMenu, setMenuStatus } from "./features/menuSelector/menuSlice";
 import { useDispatch } from "react-redux";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import "./Sidebar.css";
 
 function Sidebar() {
@@ -17,7 +16,6 @@ function Sidebar() {
     dispatch(
       setMenuStatus({
         main: mainMenu,
-        sub: "",
       })
     );
   };
@@ -47,6 +45,13 @@ function Sidebar() {
         >
           <h3>Staking</h3>
         </div>
+        {menuSelector.main === "staking" ? (
+          <div className="sidebar-chain-menu">
+            <ChainMenu ChainName={"polkadot"} />
+            <ChainMenu ChainName={"kusama"} />
+            <ChainMenu ChainName={"testnet"} />
+          </div>
+        ) : null}
       </div>
     </div>
   );

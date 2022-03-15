@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  menuStatus: { main: "home", sub: "" },
+  menuStatus: { main: "home", sub: "moonbeam" },
 };
 
 export const menuSlice = createSlice({

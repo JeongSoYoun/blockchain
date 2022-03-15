@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import Dashboard from "./Dashboard";
-import Home from "./Home";
-import "./WalletHandler";
-import "./App.css";
+import StakingView from "./StakingView";
+import HomeView from "./HomeView";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsMobile } from "./features/windowSizer/windowSlice";
 import { selectMenu } from "./features/menuSelector/menuSlice";
+import "./WalletHandler";
+import "./App.css";
+window.WalletExtension.subscribeMetaMask();
 
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
@@ -38,7 +39,7 @@ function App() {
         <Sidebar />
         {/* Home & Dashboard */}
 
-        {menuSelector.main === "home" ? <Home /> : <Dashboard />}
+        {menuSelector.main === "home" ? <HomeView /> : <StakingView />}
       </div>
     </div>
   );

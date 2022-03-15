@@ -1,28 +1,49 @@
 import React from "react";
 import WalletButton from "./WalletButton";
-import "./Header.css";
 import { useSelector } from "react-redux";
 import { selectWindowSize } from "./features/windowSizer/windowSlice";
-import MenuIcon from "@mui/icons-material/Menu";
+import { setMenuStatus } from "./features/menuSelector/menuSlice";
+import { useDispatch } from "react-redux";
+import "./Header.css";
+import MobileHeaderTab from "./MobileHeaderTab";
 
 function Header() {
   const windowSizeSelector = useSelector(selectWindowSize);
-
+  const dispatch = useDispatch();
+  const currentMenuHandler = (e) => {
+    const mainMenu = e.target.id ? e.target.id : e.target.parentElement.id;
+    dispatch(
+      setMenuStatus({
+        main: mainMenu,
+        sub: "",
+      })
+    );
+  };
   return (
-    <div className="header">
-      <h2 className="header-title" style={{ color: "#ffffff" }}>
-        SUBSTAKE
-      </h2>
-      {/*Wallet*/}
-      <div className="header-nav">
-        <div className="header-wallet-buttons">
-          <WalletButton wallet="Polkadot js" />
-          <WalletButton wallet="MetaMask" />
+    <div className="header-wrapper">
+      <div id="app-header" className="header">
+        <h2
+          id="home"
+          onClick={(e) => currentMenuHandler(e)}
+          className="header-title"
+          style={{ color: "#ffffff" }}
+        >
+          SUBSTAKE
+        </h2>
+        {/*Wallet*/}
+        <div className="header-nav">
+          <div className="header-wallet-buttons">
+            <WalletButton wallet="dot" />
+            <WalletButton wallet="metamask" />
+          </div>
         </div>
-        {windowSizeSelector.isMobile ? (
-          <MenuIcon className="header-menu-icon" />
-        ) : null}
       </div>
+      {windowSizeSelector.isMobile ? (
+        <div className="header-mobile-tabs">
+          <MobileHeaderTab title="Home" />
+          <MobileHeaderTab title="Staking" />
+        </div>
+      ) : null}
     </div>
   );
 }

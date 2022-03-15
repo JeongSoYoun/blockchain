@@ -3,15 +3,21 @@ import BlockDataTable from "./BlockDataTable";
 import SearchIcon from "@mui/icons-material/Search";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
+import { selectMenu } from "./features/menuSelector/menuSlice";
 import { useSelector } from "react-redux";
 import { selectWindowSize } from "./features/windowSizer/windowSlice";
+import { selectUser } from "./features/userSelector/userSlice";
+import { CURRENCY_SYMBOL } from "./ChainInfo";
 import "./Dashboard.css";
 
 function Dashboard() {
   const windowSizeSelector = useSelector(selectWindowSize);
+  const menuSelector = useSelector(selectMenu);
+  const userSelector = useSelector(selectUser);
   const theme = useTheme();
   const [index, setIndex] = useState(0);
   const [currentTab, setCurrentTab] = useState("active");
+  const [currentRound, setCurrentRound] = useState(0);
 
   const handleChange = (event) => {
     if (event.target.id === "active") {
@@ -59,8 +65,14 @@ function Dashboard() {
         {windowSizeSelector.isMobile ? null : (
           <div className="dashboard-header-app-bar">
             <div className="dashboard-header-info">
-              <p>Stakeable Balance: 1000 DOT</p>
-              <p>Current Round: 245 </p>
+              <div className="dashboard-header-info-balance">
+                <p>
+                  Stakeable Balance:{" "}
+                  {userSelector ? userSelector.accountBalance : 0}
+                </p>
+                <p id="currency">{CURRENCY_SYMBOL[menuSelector.sub]}</p>
+              </div>
+              <p>Current Round: {currentRound} </p>
             </div>
             <div className="dashboard-header-search">
               <SearchIcon sx={{ color: "#ec4400", opacity: 0.5 }} />
@@ -77,16 +89,18 @@ function Dashboard() {
       >
         <div className="dashboard-body">
           <BlockDataTable
-            chainName={"moonbeam"}
+            chainName={menuSelector.sub}
             roundCount={1}
             isActive={true}
+            setCurrentRound={setCurrentRound}
           />
         </div>
         <div className="dashboard-body">
           <BlockDataTable
-            chainName={"moonbeam"}
+            chainName={menuSelector.sub}
             roundCount={1}
             isActive={false}
+            setCurrentRound={setCurrentRound}
           />
         </div>
       </SwipeableViews>
