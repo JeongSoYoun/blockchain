@@ -34,3 +34,13 @@ export function getKeyByValue(object, value) {
     object[key].find((objValue) => objValue === value)
   );
 }
+
+export function cutAddress(address) {
+  if (address.length >= 14) {
+    return (
+      address.substr(0, 6) +
+      "..." +
+      address.substr(address.length - 5, address.length)
+    );
+  }
+}

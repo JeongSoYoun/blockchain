@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import {
+  setUserStatus,
+  selectUser,
+} from "../../../../features/userSelector/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import TableRow from "@mui/material/TableRow";
 import Collapse from "@mui/material/Collapse";
 import TableCell from "@mui/material/TableCell";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../../../features/userSelector/userSlice";
-import { selectWindowSize } from "../../../../features/windowSizer/windowSlice";
+import Divider from "@mui/material/Divider";
+import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/material/styles";
+import { selectWindowSize } from "../../../../features/windowSizer/windowSlice";
+import StakeController from "./StakeController";
 
 const StyledRow = styled(TableRow)({
   "&:hover": {
@@ -28,12 +34,10 @@ const DESKTOP_COLS = [
   "total_bonded",
 ];
 const MOBILE_COLS = ["display_name", "blocks_last_round", "total_bonded"];
-// {
-//   open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />;
-// }
-const createRow = (open, setOpen, row, cols) => {
+
+const createRow = (onClickTable, row, cols) => {
   return (
-    <StyledRow onClick={() => setOpen(!open)}>
+    <StyledRow onClick={() => onClickTable(row.address)}>
       {cols.map((col) => (
         <StyledTableCell key={col} align="center">
           {col === "blocks_last_round" ? row[col][0] : row[col]}
@@ -44,23 +48,32 @@ const createRow = (open, setOpen, row, cols) => {
 };
 
 function CustomTableRow(props) {
-  const userSelector = useSelector(selectUser);
-  const [stakeValue, setStakeValue] = useState(0);
-  const handleChange = (e) => {
-    setStakeValue(e.target.value);
-  };
-  const windowSizeSelector = useSelector(selectWindowSize);
   const { row } = props;
+  const dispatch = useDispatch();
+  const windowSizeSelector = useSelector(selectWindowSize);
+  const userSelector = useSelector(selectUser);
   const [open, setOpen] = useState(false);
-  const getAddress = () => {
-    console.log(row.address);
+  const onClickTable = (candidate_address) => {
+    setOpen((curr) => !curr);
+    const USER_ADDRESS = userSelector.userAddress;
+    const USER_BALANCE = userSelector.userBalance;
+    const CHAIN_NAME = userSelector.chainName;
+    const CANDIDATE_ADDRESS = candidate_address;
+    dispatch(
+      setUserStatus({
+        userAddress: USER_ADDRESS,
+        userBalance: USER_BALANCE,
+        candidateAddress: CANDIDATE_ADDRESS,
+        chainName: CHAIN_NAME,
+      })
+    );
   };
   return (
     <React.Fragment>
       {/* Section 1 */}
       {windowSizeSelector.isMobile
-        ? createRow(open, setOpen, row, MOBILE_COLS)
-        : createRow(open, setOpen, row, DESKTOP_COLS)}
+        ? createRow(onClickTable, row, MOBILE_COLS)
+        : createRow(onClickTable, row, DESKTOP_COLS)}
 
       {/* Section 2 */}
       <TableRow>
@@ -78,29 +91,19 @@ function CustomTableRow(props) {
                   28 rounds (~ 7 days) to proceed delegation-related actions.
                 </p>
               )}
+              <h2 style={{ fontSize: 12 }}>Somethings should be put here...</h2>
               <div className="table-collapsible-controller">
-                <div className="table-collapsible-input">
-                  <input
-                    value={stakeValue}
-                    onChange={(e) => handleChange(e)}
-                    type="number"
-                  />
-                  <div className="table-collabsible-input-text">
-                    <p
-                      onClick={() => setStakeValue(userSelector.accountBalance)}
-                    >
-                      MAX
-                    </p>
+                <div className="table-collapsible-stake-controller">
+                  <div id="bond" className="table-collapsible-stake">
+                    <StakeController controller="+" />
+                    <StakeController controller="-" />
+                  </div>
+                  <Divider orientation="vertical" flexItem sx={{ ml: 1 }} />
+                  <div className="table-collapsible-unclaim">
+                    <CloseIcon sx={{ fontSize: 12 }} />
                   </div>
                 </div>
-                <div className="table-collapsible-stake">
-                  <p>UNBOND</p>
-                </div>
-                <div className="table-collapsible-unclaim">
-                  <p onClick={() => getAddress()}>REVOKE</p>
-                </div>
               </div>
-              <p className="table-collapsible-info-pct">2000(0.1%)</p>
             </div>
           </Collapse>
         </TableCell>

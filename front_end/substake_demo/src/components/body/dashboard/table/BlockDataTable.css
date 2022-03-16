@@ -13,74 +13,38 @@
   flex-direction: row;
   align-items: center;
 }
-.table-collapsible-input {
+
+.table-collapsible-stake-controller {
   display: flex;
   flex-direction: row;
-  margin-left: 10px;
-  border: 0.1px solid lightgray;
-  border-radius: 10px;
-  padding: 3px;
-  width: 80px;
-  justify-content: space-evenly;
   align-items: center;
-  margin-right: 10px;
-}
-
-.table-collapsible-input > input {
-  border: none;
-  outline: none;
-  background: none;
-  width: 50%;
-  color: red;
-}
-
-.table-collabsible-input-text {
-  color: black;
-  opacity: 0.8;
-  font-weight: bold;
-  font-size: 10px;
-  cursor: pointer;
-  padding: 5px;
-}
-.table-collabsible-input-text:hover {
-  color: black;
-  opacity: 1;
-}
-.table-collapsible-input > input::placeholder {
-  color: red;
-  font-size: 10px;
-  font-weight: bold;
+  justify-content: space-between;
+  font-size: 15px;
 }
 
 .table-collapsible-stake {
-  font-size: 10px;
+  display: flex;
+  flex-direction: row;
   font-weight: bold;
   padding: 5px;
   color: red;
   opacity: 0.6;
-  cursor: pointer;
   margin-left: 5px;
 }
 
 .table-collapsible-unclaim {
-  font-size: 10px;
   font-weight: bold;
   padding: 5px;
   color: red;
-  opacity: 0.6;
+  opacity: 0.8;
   cursor: pointer;
   margin-left: 5px;
-}
-
-.table-collapsible-stake:hover {
-  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .table-collapsible-unclaim:hover {
   opacity: 1;
-}
-
-.table-collapsible-info-pct {
-  font-size: 10px;
-  font-weight: bold;
+  transform: scale(1.2);
 }

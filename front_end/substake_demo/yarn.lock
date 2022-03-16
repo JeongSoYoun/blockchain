@@ -9491,6 +9491,11 @@ react-scripts@5.0.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-simple-modal-provider@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/react-simple-modal-provider/-/react-simple-modal-provider-1.8.1.tgz#249f54abdb4f67782743a0b9c20036d44380d61e"
+  integrity sha512-GkUNHtN6fE21mvBSxKMNZiHvSxNRLpKOX8yN3RpysGb2bCfWxERgwuIsO8hcve+C6E6Wc5DSVIroKVpc0df7SA==
+
 react-swipeable-views-core@^0.14.0:
   version "0.14.0"
   resolved "https://registry.npmjs.org/react-swipeable-views-core/-/react-swipeable-views-core-0.14.0.tgz"

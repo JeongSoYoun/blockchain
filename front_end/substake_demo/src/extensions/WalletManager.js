@@ -18,11 +18,12 @@ class WalletExtension {
       return accounts;
     } else {
       const provider = await detectEthereumProvider({ mustBeMetaMask: true });
-      console.log(menu);
+
       if (provider) {
         try {
           await provider.request({ method: "eth_requestAccounts" });
           await provider.request(REQUEST_PARAMS[menu]);
+          return provider.selectedAddress;
         } catch (e) {
           console.log(e);
         }

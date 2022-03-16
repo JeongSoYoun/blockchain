@@ -5,8 +5,12 @@ import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { setMenuStatus } from "../../../features/menuSelector/menuSlice";
+import { setUserStatus } from "../../../features/userSelector/userSlice";
 import { selectWindowSize } from "../../../features/windowSizer/windowSlice";
 import { CURRENCY_SYMBOL } from "../../../extensions/ChainInfo";
+import BondPopUp from "../../../extensions/BondPopUp";
+import UnbondPopUp from "../../../extensions/UnbondPopUp";
+import { ModalProvider } from "react-simple-modal-provider";
 import "./Dashboard.css";
 
 function Dashboard({ chainId }) {
@@ -17,10 +21,20 @@ function Dashboard({ chainId }) {
   const [accountBalance, setAccountBalance] = useState(0);
   const [currentTab, setCurrentTab] = useState("active");
   const [currentRound, setCurrentRound] = useState(0);
-  window.WalletExtension.requestExtension("metamask", chainId);
-  window.WalletExtension.getMetaMaskBalance().then((balance) => {
-    setAccountBalance(Number(balance).toFixed(2));
-  });
+  window.WalletExtension.requestExtension("metamask", chainId).then(
+    (address) => {
+      window.WalletExtension.getMetaMaskBalance().then((balance) => {
+        setAccountBalance(Number(balance).toFixed(2));
+        dispatch(
+          setUserStatus({
+            userAddress: address,
+            userBalance: Number(balance).toFixed(0),
+            chainName: chainId,
+          })
+        );
+      });
+    }
+  );
   useEffect(() => {
     dispatch(
       setMenuStatus({
@@ -89,29 +103,31 @@ function Dashboard({ chainId }) {
           </div>
         )}
       </div>
-      <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={index}
-        onChangeIndex={handleChangeIndex}
-        className="dashboard-swipe-view"
-      >
-        <div className="dashboard-body">
-          <BlockDataTable
-            chainName={chainId}
-            roundCount={1}
-            isActive={true}
-            setCurrentRound={setCurrentRound}
-          />
-        </div>
-        <div className="dashboard-body">
-          <BlockDataTable
-            chainName={chainId}
-            roundCount={1}
-            isActive={false}
-            setCurrentRound={setCurrentRound}
-          />
-        </div>
-      </SwipeableViews>
+      <ModalProvider value={[BondPopUp, UnbondPopUp]}>
+        <SwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={index}
+          onChangeIndex={handleChangeIndex}
+          className="dashboard-swipe-view"
+        >
+          <div className="dashboard-body">
+            <BlockDataTable
+              chainName={chainId}
+              roundCount={1}
+              isActive={true}
+              setCurrentRound={setCurrentRound}
+            />
+          </div>
+          <div className="dashboard-body">
+            <BlockDataTable
+              chainName={chainId}
+              roundCount={1}
+              isActive={false}
+              setCurrentRound={setCurrentRound}
+            />
+          </div>
+        </SwipeableViews>
+      </ModalProvider>
     </div>
   );
 }
