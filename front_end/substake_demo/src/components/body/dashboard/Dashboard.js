@@ -1,23 +1,34 @@
-import React, { useState } from "react";
-import BlockDataTable from "./BlockDataTable";
+import React, { useEffect, useState } from "react";
+import BlockDataTable from "./table/BlockDataTable";
 import SearchIcon from "@mui/icons-material/Search";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
-import { selectMenu } from "./features/menuSelector/menuSlice";
-import { useSelector } from "react-redux";
-import { selectWindowSize } from "./features/windowSizer/windowSlice";
-import { selectUser } from "./features/userSelector/userSlice";
-import { CURRENCY_SYMBOL } from "./ChainInfo";
+import { useSelector, useDispatch } from "react-redux";
+import { setMenuStatus } from "../../../features/menuSelector/menuSlice";
+import { selectWindowSize } from "../../../features/windowSizer/windowSlice";
+import { CURRENCY_SYMBOL } from "../../../extensions/ChainInfo";
 import "./Dashboard.css";
 
-function Dashboard() {
+function Dashboard({ chainId }) {
   const windowSizeSelector = useSelector(selectWindowSize);
-  const menuSelector = useSelector(selectMenu);
-  const userSelector = useSelector(selectUser);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [index, setIndex] = useState(0);
+  const [accountBalance, setAccountBalance] = useState(0);
   const [currentTab, setCurrentTab] = useState("active");
   const [currentRound, setCurrentRound] = useState(0);
+  window.WalletExtension.requestExtension("metamask", chainId);
+  window.WalletExtension.getMetaMaskBalance().then((balance) => {
+    setAccountBalance(Number(balance).toFixed(2));
+  });
+  useEffect(() => {
+    dispatch(
+      setMenuStatus({
+        main: "staking",
+        sub: chainId,
+      })
+    );
+  }, [dispatch, chainId]);
 
   const handleChange = (event) => {
     if (event.target.id === "active") {
@@ -66,11 +77,8 @@ function Dashboard() {
           <div className="dashboard-header-app-bar">
             <div className="dashboard-header-info">
               <div className="dashboard-header-info-balance">
-                <p>
-                  Stakeable Balance:{" "}
-                  {userSelector ? userSelector.accountBalance : 0}
-                </p>
-                <p id="currency">{CURRENCY_SYMBOL[menuSelector.sub]}</p>
+                <p>Stakeable Balance: {accountBalance}</p>
+                <p id="currency">{CURRENCY_SYMBOL[chainId]}</p>
               </div>
               <p>Current Round: {currentRound} </p>
             </div>
@@ -89,7 +97,7 @@ function Dashboard() {
       >
         <div className="dashboard-body">
           <BlockDataTable
-            chainName={menuSelector.sub}
+            chainName={chainId}
             roundCount={1}
             isActive={true}
             setCurrentRound={setCurrentRound}
@@ -97,7 +105,7 @@ function Dashboard() {
         </div>
         <div className="dashboard-body">
           <BlockDataTable
-            chainName={menuSelector.sub}
+            chainName={chainId}
             roundCount={1}
             isActive={false}
             setCurrentRound={setCurrentRound}

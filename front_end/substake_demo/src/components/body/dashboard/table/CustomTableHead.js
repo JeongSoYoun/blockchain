@@ -4,7 +4,7 @@ import TableSortLabel from "@mui/material/TableSortLabel";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import { useSelector } from "react-redux";
-import { selectWindowSize } from "./features/windowSizer/windowSlice";
+import { selectWindowSize } from "../../../../features/windowSizer/windowSlice";
 import { styled } from "@mui/material/styles";
 
 const StyledTableCell = styled(TableCell)({

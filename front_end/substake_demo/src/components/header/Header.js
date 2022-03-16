@@ -1,11 +1,11 @@
 import React from "react";
 import WalletButton from "./WalletButton";
 import { useSelector } from "react-redux";
-import { selectWindowSize } from "./features/windowSizer/windowSlice";
-import { setMenuStatus } from "./features/menuSelector/menuSlice";
+import { selectWindowSize } from "../../features/windowSizer/windowSlice";
+import { setMenuStatus } from "../../features/menuSelector/menuSlice";
 import { useDispatch } from "react-redux";
-import "./Header.css";
 import MobileHeaderTab from "./MobileHeaderTab";
+import "./Header.css";
 
 function Header() {
   const windowSizeSelector = useSelector(selectWindowSize);

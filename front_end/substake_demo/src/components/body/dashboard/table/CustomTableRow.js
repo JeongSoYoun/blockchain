@@ -3,8 +3,8 @@ import TableRow from "@mui/material/TableRow";
 import Collapse from "@mui/material/Collapse";
 import TableCell from "@mui/material/TableCell";
 import { useSelector } from "react-redux";
-import { selectUser } from "./features/userSelector/userSlice";
-import { selectWindowSize } from "./features/windowSizer/windowSlice";
+import { selectUser } from "../../../../features/userSelector/userSlice";
+import { selectWindowSize } from "../../../../features/windowSizer/windowSlice";
 import { styled } from "@mui/material/styles";
 
 const StyledRow = styled(TableRow)({

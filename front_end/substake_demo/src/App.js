@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
-import Link from "react-router-dom";
-import Header from "./Header";
-import Sidebar from "./Sidebar";
-import StakingView from "./StakingView";
-import HomeView from "./HomeView";
-import { useDispatch, useSelector } from "react-redux";
+import Header from "./components/header/Header";
+import Sidebar from "./components/body/sidebar/Sidebar";
+import StakingView from "./components/tabs/staking/StakingView";
+import HomeView from "./components/tabs/home/HomeView";
+import { useRoutes } from "hookrouter";
+import { useDispatch } from "react-redux";
 import { setIsMobile } from "./features/windowSizer/windowSlice";
-import { selectMenu } from "./features/menuSelector/menuSlice";
 import Divider from "@mui/material/Divider";
-import "./WalletHandler";
+import "./extensions/WalletManager";
 import "./App.css";
 
 window.WalletExtension.subscribeMetaMask();
 
+const routes = {
+  "/": () => <HomeView />,
+  "/staking": () => <StakingView />,
+  "/staking/:chainId": ({ chainId }) => <StakingView chainId={chainId} />,
+};
+
 function App() {
   const [width, setWidth] = useState(window.innerWidth);
-  const menuSelector = useSelector(selectMenu);
+  const routeResult = useRoutes(routes);
   const dispatch = useDispatch();
   const WindowSizeHandler = () => {
     setWidth(window.innerWidth);
@@ -34,17 +39,11 @@ function App() {
 
   return (
     <div className="app">
-      {/* Sticky Header*/}
       <Header />
-      {/* Body */}
       <div className="app-body">
-        {/* Wallet & Menu */}
         <Sidebar />
-        {/* Home & Dashboard */}
-
-        {menuSelector.main === "home" ? <HomeView /> : <StakingView />}
+        {routeResult}
       </div>
-
       <div className="app-footer">
         <Divider sx={{ backgroundColor: "#7b7b7b" }} />
         <div className="footer-title">

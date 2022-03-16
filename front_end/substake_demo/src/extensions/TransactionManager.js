@@ -1,9 +1,9 @@
 import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
-import abi from "./MoonbeamStakingABI.json";
-import { RPC_ENDPOINT } from "./ChainInfo";
+import abi from "./contracts/MoonbeamStakingABI.json";
+import { RPC_ENDPOINT } from "../ChainInfo";
 
-export class TransactionHandler {
+export class TransactionManager {
   static async DelegateTX(
     collater_address,
     delegate_amount,

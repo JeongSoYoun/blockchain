@@ -3,14 +3,13 @@ import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import Paper from "@mui/material/Paper";
-import { getComparator } from "./utils";
-import { DataManager } from "./DataManager";
 import CustomTableHead from "./CustomTableHead";
 import CustomTableRow from "./CustomTableRow";
 import { TailSpin } from "react-loader-spinner";
-import { stateMapping } from "./utils";
-
-import "./DataTable.css";
+import { stateMapping } from "../../../../extensions/utils";
+import { getComparator } from "../../../../extensions/utils";
+import { DataManager } from "../../../../extensions/DataManager";
+import "./BlockDataTable.css";
 
 function BlockDataTable({ chainName, roundCount, isActive, setCurrentRound }) {
   const [order, setOrder] = useState("asc");

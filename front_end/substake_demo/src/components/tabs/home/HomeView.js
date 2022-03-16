@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setMenuStatus } from "../../../features/menuSelector/menuSlice";
 import "./Home.css";
 
 function HomeView() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      setMenuStatus({
+        main: "home",
+      })
+    );
+  }, [dispatch]);
   return (
     <div className="home">
       <div className="home-balance-status">

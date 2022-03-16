@@ -1,7 +1,7 @@
 export const CHAIN = {
   polkadot: ["moonbeam", "astar"],
   kusama: ["moonriver", "shiden"],
-  testnet: ["moonbasealpha"],
+  testnet: ["moonbase"],
 };
 
 export const RPC_ENDPOINT = {
@@ -15,7 +15,7 @@ export const CURRENCY_SYMBOL = {
   kusama: "KSM",
   moonbeam: "GLMR",
   moonriver: "MOVR",
-  moonbasealpha: "DEV",
+  moonbase: "DEV",
 };
 
 export const REQUEST_PARAMS = {
@@ -51,7 +51,7 @@ export const REQUEST_PARAMS = {
       },
     ],
   },
-  moonbasealpha: {
+  moonbase: {
     method: "wallet_addEthereumChain",
     params: [
       {

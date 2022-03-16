@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import dot from "./dot.png";
-import metamask from "./metamask.png";
-import { useDispatch, useSelector } from "react-redux";
-import { selectUser, setUserStatus } from "./features/userSelector/userSlice";
-import { selectMenu } from "./features/menuSelector/menuSlice";
+import dot from "../../dot.png";
+import metamask from "../../metamask.png";
+import { useSelector } from "react-redux";
+import { selectMenu } from "../../features/menuSelector/menuSlice";
 import "./WalletButton.css";
 
 const dotImg = dot;

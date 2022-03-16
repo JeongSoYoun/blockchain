@@ -1,0 +1,17 @@
+.header-tab {
+  text-decoration: none;
+  margin-right: 10px;
+  color: beige;
+  font-weight: bold;
+}
+
+.header-tab-selected {
+  color: #ec4400;
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.header-tab:visited {
+  color: beige;
+}

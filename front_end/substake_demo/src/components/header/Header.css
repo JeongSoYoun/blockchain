@@ -2,7 +2,6 @@
   background: linear-gradient(20deg, #6a82fb 20%, #f793a7 70%);
   display: flex;
   flex-direction: column;
-  height: 100px;
 }
 .header {
   position: sticky;

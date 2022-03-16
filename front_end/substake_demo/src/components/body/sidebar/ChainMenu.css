@@ -1,0 +1,66 @@
+.chain-menu {
+  margin-top: 20px;
+  font-weight: bold;
+}
+.chain-menu-link {
+  align-items: center;
+  display: flex;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-top: 3px;
+}
+.chain-menu-link:hover {
+  background-color: rgb(243, 181, 224);
+  opacity: 0.8;
+  color: black;
+  border-radius: 5px;
+}
+.chain-menu-link > a {
+  text-decoration: none;
+  font-weight: bold;
+  color: beige;
+  font-size: 12px;
+}
+.chain-menu-link-selected {
+  align-items: center;
+  display: flex;
+  background-color: rgb(243, 181, 224);
+  opacity: 0.8;
+  border-radius: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  margin-top: 3px;
+}
+
+.chain-menu-link-selected > a {
+  text-decoration: none;
+  font-weight: bold;
+  color: beige;
+  font-size: 12px;
+}
+
+.chain-menu-link > a:visited {
+  color: beige;
+}
+.chain-menu > p {
+  font-size: 10px;
+}
+
+.chain-menus {
+  margin-top: 3px;
+  padding-top: 2px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.chain-menus-selected {
+  margin-top: 3px;
+  padding-top: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  color: #ec4400;
+}
+
+.chain-menus > h3:hover {
+  color: #ec4400;
+}
