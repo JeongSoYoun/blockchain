@@ -7,6 +7,7 @@ import "./WalletButton.css";
 const dotImg = dot;
 const metamaskImg = metamask;
 
+// wallet = "dot" or "metamask"
 function WalletButton({ wallet }) {
   const menuSelector = useSelector(selectMenu);
   async function getExtension() {

@@ -4,6 +4,7 @@ import {
   web3Enable,
 } from "@polkadot/extension-dapp";
 import detectEthereumProvider from "@metamask/detect-provider";
+import { DataManager } from "./DataManager";
 import { RPC_ENDPOINT, REQUEST_PARAMS } from "./ChainInfo";
 import Web3 from "web3";
 
@@ -15,7 +16,8 @@ class WalletExtension {
         throw new Error("Please install extension first!");
       }
       const accounts = await web3Accounts();
-      return accounts;
+      const substrateAccount = accounts[0].address;
+      DataManager.getSubstrateBalances(substrateAccount);
     } else {
       const provider = await detectEthereumProvider({ mustBeMetaMask: true });
 

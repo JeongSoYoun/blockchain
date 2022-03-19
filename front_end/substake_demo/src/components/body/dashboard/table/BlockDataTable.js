@@ -11,7 +11,13 @@ import { getComparator } from "../../../../extensions/utils";
 import { DataManager } from "../../../../extensions/DataManager";
 import "./BlockDataTable.css";
 
-function BlockDataTable({ chainName, roundCount, isActive, setCurrentRound }) {
+function BlockDataTable({
+  chainName,
+  roundCount,
+  isActive,
+  userAddress,
+  setCurrentRound,
+}) {
   const [order, setOrder] = useState("asc");
   const [orderBy, setOrderBy] = useState("rank");
   const [rows, setRows] = useState([]);
@@ -27,12 +33,13 @@ function BlockDataTable({ chainName, roundCount, isActive, setCurrentRound }) {
       isMounted,
       chainName,
       roundCount,
-      stateMapping[isActive]
+      stateMapping[isActive],
+      userAddress
     );
     return () => {
       isMounted = false;
     };
-  }, [chainName, roundCount, isActive, setCurrentRound]);
+  }, [chainName, roundCount, isActive, userAddress, setCurrentRound]);
 
   const handleSortRequest = (_, HeadCellId) => {
     const isAsc = orderBy === HeadCellId && order === "asc";

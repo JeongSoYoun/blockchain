@@ -9,7 +9,6 @@ import { cutAddress } from "./utils";
 import { TransactionManager } from "./TransactionManager";
 import "./PopUpView.css";
 
-const DELEGATION_AMOUNT = 5;
 function BondPopUp({ children }) {
   const [isOpen, setIsOpen] = useModalState();
   const [stakeValue, setStakeValue] = useState(0);

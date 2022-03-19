@@ -14,15 +14,17 @@ import { ModalProvider } from "react-simple-modal-provider";
 import "./Dashboard.css";
 
 function Dashboard({ chainId }) {
-  const windowSizeSelector = useSelector(selectWindowSize);
   const dispatch = useDispatch();
+  const windowSizeSelector = useSelector(selectWindowSize);
   const theme = useTheme();
   const [index, setIndex] = useState(0);
   const [accountBalance, setAccountBalance] = useState(0);
   const [currentTab, setCurrentTab] = useState("active");
   const [currentRound, setCurrentRound] = useState(0);
+  const [userAddress, setUserAddress] = useState("");
   window.WalletExtension.requestExtension("metamask", chainId).then(
     (address) => {
+      setUserAddress(address);
       window.WalletExtension.getMetaMaskBalance().then((balance) => {
         setAccountBalance(Number(balance).toFixed(2));
         dispatch(
@@ -103,6 +105,7 @@ function Dashboard({ chainId }) {
           </div>
         )}
       </div>
+
       <ModalProvider value={[BondPopUp, UnbondPopUp]}>
         <SwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -115,6 +118,7 @@ function Dashboard({ chainId }) {
               chainName={chainId}
               roundCount={1}
               isActive={true}
+              userAddress={userAddress}
               setCurrentRound={setCurrentRound}
             />
           </div>
@@ -123,6 +127,7 @@ function Dashboard({ chainId }) {
               chainName={chainId}
               roundCount={1}
               isActive={false}
+              userAddress={userAddress}
               setCurrentRound={setCurrentRound}
             />
           </div>
