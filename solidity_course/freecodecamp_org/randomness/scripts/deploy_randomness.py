@@ -18,8 +18,15 @@ def deploy_randomness():
     fund_link_to_contract(contract_address=randomness_contract)
     randomness_contract.getRandomNumber({'from': account})
     print("getting random number")
-    time.sleep(60)
-    print(f"Random Number is {randomness_contract.randomNumber()}")
+
+    time_start = time.time()
+    while randomness_contract.randomNumber() == 0:
+        
+        print("Waiting for data receive...{}".format(randomness_contract.randomNumber()))
+
+    time_end = time.time()
+    print("Took {time}".format(time=time_end - time_start))
+    print("Random number is {random}".format(random=randomness_contract.randomNumber()))
 
 def main(): 
 

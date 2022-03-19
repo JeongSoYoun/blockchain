@@ -3,9 +3,15 @@
 
 <head>
     <script>
+        accounts = [];
         function polkadotJS() {
-            const extension = window.web3Wallet.get_polkadotJS();
-            console.log(extension);
+            const extension = window.web3Wallet.get_polkadotJS().then((_) => {
+
+                window.web3Wallet.get_account().then((web3Account) => {
+                    accounts = web3Account;
+                    window.utils.createTextDiv(accounts[0].address);
+                })
+            })
         }
     </script>
 <script defer src="bundle.js"></script></head>

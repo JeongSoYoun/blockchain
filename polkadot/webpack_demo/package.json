@@ -17,6 +17,7 @@
     "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "@metamask/detect-provider": "^1.2.0"
+    "@metamask/detect-provider": "^1.2.0",
+    "request-promise-native": "^1.0.9"
   }
 }

@@ -1,5 +1,6 @@
 
 use trait_tutorial::{Summary,Tweet,News};
+use trait_tutorial::{largest};
 
 fn main() {
 	
@@ -13,8 +14,11 @@ fn main() {
 	
 	notify(&tweet);
 	notify(&news);
+
+	let list = vec![10,1,4,20,9];
+	println!("{}",largest(&list));
 }
 
-pub fn notify(item: &impl Summary) {
+fn notify(item: &impl Summary) {
 	println!("{}",item.summarize());
 }

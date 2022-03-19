@@ -59,7 +59,7 @@ class ExtensionTest {
         if (!isWeb3Injected) {
             throw new Error("Please install wallet extension first!")
         }
-        accounts = await web3Accounts();
+        const accounts = await web3Accounts();
         return accounts
     }
 

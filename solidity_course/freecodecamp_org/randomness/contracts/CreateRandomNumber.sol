@@ -21,16 +21,10 @@ contract CreateRandomNumber is VRFConsumerBase {
         fee = _fee;
     }
 
-    function getRandomNumber() public {
+    function getRandomNumber() public returns (bytes32 requestId) {
 
         require(LINK.balanceOf(address(this)) >= fee, "Not enough link for this contract");
-        requestId = requestRandomness(keyhash,fee);
-        rawFulfillRandomness(requestId, randomness);
-    }
-
-    function rawFulfillRandomness(bytes32 requestId, uint256 randomness) external {
-        require(msg.sender == vrfCoordinator, "Only VRFCoordinator can fulfill");
-        fulfillRandomness(requestId, randomness);
+        return requestId = requestRandomness(keyhash, fee);
     }
 
     function fulfillRandomness(bytes32 requestId, uint256 randomness) 

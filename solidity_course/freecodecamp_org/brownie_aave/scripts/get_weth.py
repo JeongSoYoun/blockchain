@@ -5,7 +5,7 @@ from brownie import interface, config, network
 def get_weth():
 
     """
-        Mints WETH by depositing ETH
+    Mints WETH by depositing ETH
     """
     
     account = get_account()

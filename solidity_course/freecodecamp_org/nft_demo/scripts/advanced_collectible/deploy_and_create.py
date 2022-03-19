@@ -16,11 +16,12 @@ def deploy_and_create():
         get_contract(contract_name="link_token"),
         config["networks"][network.show_active()]["key_hash"],
         config["networks"][network.show_active()]["fee"],
+
         {'from': account}
     )
     fund_link_to_contract(contract_address=advanced_collectible)
-    create_tx = advanced_collectible.createCollectible({"from": account})
-    create_tx.wait(1)
+    create_tx = advanced_collectible.requestRandomNumber({"from": account})
+    create_tx.wait(180)
     print("New token has been created!")
     
 def main():
