@@ -1,7 +1,7 @@
 var rp = require("request-promise-native");
 
 const OPTIONS = {
-  uri: "http://209.145.51.70:8000/api/request",
+  uri: "",
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: {
