@@ -1,4 +1,5 @@
 
+
 #[cfg(test)]
 mod tests {
     #[test]
@@ -10,73 +11,67 @@ mod tests {
     #[test]
     fn custom_vec_should_work() {
         use super::custom_vec;
-        let test = custom_vec![1,2,3,4,5];
-        assert_eq!(test, [1,2,3,4,5]);
+        let test_5 = custom_vec!(i32,0;5);
+
+        assert_eq!(test_5,[0,0,0,0]);
     } 
 }
 
-pub mod pallet {
-    use crate::*;
-    pub trait Config {
-        type Origin: Into<RawOrigin<Self::AccountId>>;
-        type AccountId;
-    }
-    pub type Origin<T> = RawOrigin<<T as Config>::AccountId>;
+#[macro_export]
+macro_rules! scanline {
+    
+    ($x: expr) => {
+        std::io::stdin().read_line(&mut $x).unwrap();
+    };
 }
 
-pub enum RawOrigin<AccountId> {
-	Root,
-	Signed(AccountId),
-	None,
+#[macro_export]
+macro_rules! custom_println_tt {
+    ($format: literal, $($token: tt)*) => {
+        println!($format, $($token)*)
+    };
+
+    ($format: literal) => {
+        println!($format)
+    };
+}
+
+#[macro_export]
+macro_rules! custom_println_expr {
+    ($format: literal, $($token: expr), *) => {
+        println!($format, $($token), * ) 
+    }
 }
 
 #[macro_export]
 macro_rules! custom_vec {
-    ($($x: expr), *) => {
+    ($t: ty) => {
+        Vec::<$t>::new()
+    };
+    ($t: ty, $($e: expr), *) => {
         {
-            let mut temp = Vec::new();
+            let mut temp_vec = Vec::<$t>::new();
             $(
-                temp.push($x);
+                temp_vec.push($e);
             )*
-            temp
+            temp_vec
+        }
+    };
+    ($t: ty, $e: expr; $n: expr) => {
+        {
+            let mut temp_vec = Vec::<$t>::new();
+            for _ in 0..$n {
+                temp_vec.push($e);
+            }
+            temp_vec
         }
     };
 }
 
-pub trait Draw {
-    fn draw(&self);
+#[macro_export]
+macro_rules! __rust_force_expr {
+    ($e: expr) => {
+        $e
+    };
 }
 
-pub struct Screen {
-    pub components: Vec<Box<dyn Draw>>,
-}
-
-impl Screen {
-    pub fn run(&self) {
-        for component in self.components.iter() {
-            component.draw();
-        }
-    }
-}
-
-pub struct Button {
-    pub width: u32,
-    pub height: u32,
-}
-
-impl Draw for Button {
-    fn draw(&self) {
-        println!("This is Button Drawing");
-    }
-}
-
-pub struct TextField {
-    pub width: u32,
-    pub height: u32,
-}
-
-impl Draw for TextField {
-    fn draw(&self) {
-        println!("This is TextField Drawing!");
-    }
-}
